@@ -20,7 +20,7 @@ function App() {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
 
       // Send the message to the server
-      const response = await axios.post('http://localhost:5000/message', { message: userMessage });
+      const response = await axios.post('https://chatbackend-g9je.onrender.com/message', { message: userMessage });
       const aiMessage = { sender: 'ai', text: response.data.answer };
 
       // Add the AI response to the conversation
