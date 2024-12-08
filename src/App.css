@@ -1,38 +1,182 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: black;
+  color: rgb(28, 230, 28);
+  overflow: hidden; /* Prevent scrollbars */
+  transition: all 0.3s ease; /* Smooth transition for glow effect */
+}
+
+/* App Container */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  position: relative; /* To position absolute elements inside */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background: black;
+  border-bottom: 2px solid green;
+}
+
+.navbar-title {
+  color: rgb(36, 233, 36);
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green; /* Glow effect */
+}
+
+.connect-wallet-btn {
+  background-color: black;
+  color: rgb(36, 233, 36);;
+  border: 2px solid rgb(36, 233, 36);;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px green; /* Add glowing effect to buttons */
+}
+
+.connect-wallet-btn:hover {
+  background-color: green;
+  color: black;
+  box-shadow: 0 0 20px green; /* Increased glowing effect on hover */
+}
+
+/* Chatbox */
+.chat-container {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
+  flex-grow: 1;
+  margin-top: 40px;
+  z-index: 2; /* Ensure chat is above animation */
 }
 
-.App-link {
-  color: #61dafb;
+.chatbox {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgb(36, 233, 36);;
+  border-radius: 10px;
+  padding: 30px;
+  width: 400px;
+  height: 500px; /* Increased height for more space */
+  box-shadow: 0 0 20px rgb(36, 233, 36);; /* Glowing box */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure input and button are at the bottom */
+  overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Message Styles */
+.messages {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* User message */
+.user-message {
+  color: rgb(32, 233, 32);
+  padding: 10px;
+  border-radius: 10px;
+  align-self: flex-start; /* Position on the left */
+  text-shadow: 0 0 5px rgb(36, 233, 36);;
+  box-shadow: 0 0 10px rgb(36, 233, 36);;
+}
+
+/* AI message */
+.ai-message {
+  color: red;
+  padding: 10px;
+  border-radius: 10px;
+  align-self: flex-end; /* Position on the right */
+  text-shadow: 0 0 5px red;
+  box-shadow: 0 0 10px red;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  background: black;
+  color: rgb(36, 233, 36);;
+  padding: 10px;
+  font-size: 12px;
+  border-top: 2px solid rgb(36, 233, 36);;
+  text-shadow: 0 0 5px rgb(36, 233, 36);; /* Subtle glow effect on footer text */
+}
+
+/* Input and button styling */
+.user-input {
+  width: calc(100% - 100px);
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid rgb(36, 226, 36);
+  background: black;
+  color: green;
+  text-shadow: 0 0 5px green; /* Glow effect for user text */
+}
+
+.send-btn {
+  background-color: green;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px green; /* Glowing effect */
+}
+
+.send-btn:hover {
+  background-color: black;
+  color: green;
+  border: 1px solid green;
+  box-shadow: 0 0 20px green; /* Increased glowing effect on hover */
+}
+
+/* Animation Container */
+.dropping-words-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden; /* Hide overflowing words */
+  pointer-events: none; /* Prevent interaction */
+}
+
+.dropping-word {
+  position: absolute;
+  top: -50px; /* Start above the viewport */
+  left: 0;
+  font-size: 20px;
+  color: green;
+  animation: drop 5s linear infinite;
+  opacity: 0.7;
+}
+
+/* Keyframes for the dropping animation */
+@keyframes drop {
+  0% {
+    top: -50px;
+    opacity: 1;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    top: 110vh; /* Move slightly below the viewport */
+    opacity: 0;
   }
 }
